@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title ng-bind-template="Google Phone Gallery: {{search.$}}">Google Phone Gallery</title>
+<script src="angular.js"></script>
+<script src="mainjs.js"></script>
+<!--<script src="angular-bootstrap.js"></script>-->
+<style>
+table{}
+td,th{border:1px solid green;}
+td img.poster{height:130px; width:200px;}
+td img.rating{height:50px; width:150px; margin-left:-14px;}
+#search{border:2px dotted blue; padding:20px;}
+body{margin-left:auto; margin-right:auto; width:925px;}
+html{min-height:101%;}
+</style>
+<script>
+
+</script>
+</head>
+
+<body ng-app="myApp" ng-controller="myController">
+
+<div id="search">Search: <input type="text" ng-model="search.$"/> 
+<span style="font-size:.8em; color:blue;"># type in the box to filter the list of movies.</span>
+Sort By: 
+<select id="sort" name="sort" ng-model="custSort" style="width:200px; padding:3px;">
+<option>--Select--</option>
+<option value="name">Name (ascending)</option>
+<option value="-name">Name (descending)</option>
+<option value="rating">Rating(ascending)</option>
+<option value="-rating">Rating(descending)</option>
+</select>
+</div>
+
+<table cellpadding="20">
+<tr>
+<th width="220">Movie Rating</th>
+<th width="330">Review</th>
+<th width="240">Poster</th>
+<tr/>
+<tr ng-repeat="abc in data.message|filter:search|orderBy:custSort">
+<td>{{abc.name|uppercase}}<br><img class="rating" alt="{{abc.rating}}" title="{{abc.rating}}" src="images/rating{{abc.rating}}.png"/></td>
+<td>{{abc.review}}</td>
+<td><img class="poster" src="images/{{abc.image}}" alt="image" title="{{abc.image}}" /></td>
+</tr>
+</table>
+
+</body>
+</html>
